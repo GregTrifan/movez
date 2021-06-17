@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,17 +50,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final modController = TextEditingController();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    modController.dispose();
+    super.dispose();
+  }
 
   void _incrementCounter() {
     setState(() {
       // setState is somewhat similar to useState from React 16.8+
-      _counter++;
+      _counter += int.parse(modController.text);
     });
   }
 
   void _decrementCounter() {
     setState(() {
-      _counter--;
+      _counter -= int.parse(modController.text);
     });
   }
 
@@ -98,12 +106,19 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'You have pushed the button this many times:',
+                'The Counter is $_counter',
               ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
-              ),
+              Padding(
+                padding: EdgeInsets.only(right: 30, left: 30),
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Change number"),
+                  keyboardType: TextInputType.number,
+                  controller: modController,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -126,6 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 alignment: Alignment.bottomLeft,
                 child: FloatingActionButton(
                   onPressed: _decrementCounter,
+                  backgroundColor: Colors.red,
                   tooltip: 'Decrement',
                   child: Icon(Icons.remove),
                 ),
