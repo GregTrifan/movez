@@ -2,6 +2,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:movez/Views/counter.dart';
 import 'settings.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -23,7 +24,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   int _selectedIndex = 0;
   final modController = TextEditingController();
   PageController _pageController = PageController();
@@ -41,19 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
-  void _incrementCounter() {
-    setState(() {
-      // setState is somewhat similar to useState from React 16.8+
-      _counter += int.parse(modController.text);
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      _counter -= int.parse(modController.text);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -69,35 +56,13 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: PageView(
-          allowImplicitScrolling: false,
+          physics: NeverScrollableScrollPhysics(),
           controller: _pageController,
           onPageChanged: (index) {
             setState(() => _selectedIndex = index);
           },
           children: <Widget>[
-            Center(
-              // Center is a layout widget. It takes a single child and positions it
-              // in the middle of the parent.
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'The Counter is $_counter',
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 30, left: 30),
-                    child: TextField(
-                      decoration: InputDecoration(labelText: "Change number"),
-                      keyboardType: TextInputType.number,
-                      controller: modController,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
+            Counter(),
             Container(
               color: Colors.red,
             ),
@@ -105,33 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.green,
             ),
             SettingsPage()
-          ],
-        ),
-        floatingActionButton: Stack(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(left: 31),
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  onPressed: _incrementCounter,
-                  tooltip: 'Increment',
-                  child: Icon(Icons.add),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 31),
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: FloatingActionButton(
-                  onPressed: _decrementCounter,
-                  backgroundColor: Colors.red,
-                  tooltip: 'Decrement',
-                  child: Icon(Icons.remove),
-                ),
-              ),
-            )
           ],
         ),
         bottomNavigationBar: BottomNavyBar(
