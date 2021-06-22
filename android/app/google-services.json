@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "432297538104",
+    "project_id": "loremipsum-9fa51",
+    "storage_bucket": "loremipsum-9fa51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432297538104:android:750c7d49588d6671af6ccd",
+        "android_client_info": {
+          "package_name": "com.example.movez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432297538104-brrk2qrp9fc8mfpk8q6a71mb8t7i2m11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW3DIj-PZLr6llYIFBk_vfdHfeyp9BV_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432297538104-brrk2qrp9fc8mfpk8q6a71mb8t7i2m11.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
