@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-/*
-
- */
 class Counter extends StatefulWidget {
   Counter({Key? key}) : super(key: key);
 
